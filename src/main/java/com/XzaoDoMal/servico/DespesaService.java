@@ -25,7 +25,7 @@ public class DespesaService {
 			 despesas.add(despesa);
 		}else if (acao.equals("salvar")) {
 			despesaRepositorio.saveAll(despesas);
-		
+			despesas.clear();
 		}
 	}
 	public Page<Despesa> carregarTodasDespesas(Pageable pageable) {

@@ -8,6 +8,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -33,23 +35,14 @@ public class Despesa implements Serializable{
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date data;
 	
+	@Column(name="tipo_despesa")
+	@Enumerated(EnumType.STRING)
+	private TipoDespesa tipo;
+	
 	@ManyToOne
 	@JoinColumn(name = "motorista_fk")
 	private Motorista motorista;
 	
-	public Despesa() {
-		super();
-	}
-
-	public Despesa(Long id, String descricao, BigDecimal valorDespesa, Date data, Motorista motorista) {
-		super();
-		this.id = id;
-		this.descricao = descricao;
-		this.valorDespesa = valorDespesa;
-		this.data = data;
-		this.motorista = motorista;
-	}
-
 	public Long getId() {
 		return id;
 	}
@@ -88,5 +81,13 @@ public class Despesa implements Serializable{
 
 	public void setMotorista(Motorista motorista) {
 		this.motorista = motorista;
+	}
+
+	public TipoDespesa getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(TipoDespesa tipo) {
+		this.tipo = tipo;
 	}
 }

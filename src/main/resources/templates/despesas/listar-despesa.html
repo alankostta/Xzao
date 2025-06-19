@@ -16,19 +16,16 @@
 		<div class="card card-custom-motorista">
 			<div class="card-header bg-primary text-white">
 				<h4 class="mb-0">Lista de Despesa</h4>
-			</div>
-			<div class="card-body">
-				<div class="row">
-					<div class="col">
-						<a th:href="@{/inicio-controle}" class="btn btn-secondary"><i class="bi bi-house"></i>
+				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+					<a th:href="@{/inicio-controle}" class="btn btn-secondary"><i class="bi bi-house"></i>
 							Inicio</a>
 						<a th:href="@{/despesas/listar-despesas}" class="btn btn-dark">
 							<i class="bi bi-arrow-repeat"></i> Recarregar</a>
-						<a th:href="@{/despesas/cadastro-despesas}" class="btn btn-primary">
+						<a th:href="@{/despesas/cadastro-despesas}" class="btn btn-success">
 							<i class="bi bi-arrow-left-square"></i> Voltar</a>
-					</div>
 				</div>
-				<hr>
+			</div>
+			<div class="card-body">
 				<!-- Lista de Motoristas -->
 				<h5>Despesas Cadastradas</h5>
 				<table class="table table-striped mt-3">
@@ -50,6 +47,16 @@
 										class="bi bi-arrow-up-short"></i>
 									<a class="sublinhado"
 										th:href="@{/despesas/listar-despesas(sort='motorista.nome', direction='desc')}">
+										<i class="bi bi-arrow-down-short"></i>
+									</a>
+								</a>
+							</th>
+							<th>Tipo Desp.
+									<a class="sublinhado"
+									th:href="@{/despesas/listar-despesas(sort='tipo', direction='asc')}"><i
+										class="bi bi-arrow-up-short"></i>
+									<a class="sublinhado"
+										th:href="@{/despesas/listar-despesas(sort='tipo', direction='desc')}">
 										<i class="bi bi-arrow-down-short"></i>
 									</a>
 								</a>
@@ -94,6 +101,7 @@
 						<tr th:each="despesa :${despesas}">
 							<td th:text="${despesa.id}"></td>
 							<td th:text="${despesa.motorista.nome}"></td>
+							<td th:text="${despesa.tipo}"></td>
 							<td th:text="${despesa.descricao}"></td>
 							<td th:text="${despesa.valorDespesa}"></td>
 							<td th:text="${#dates.format(despesa.data, 'dd/MM/yyyy')}"></td>

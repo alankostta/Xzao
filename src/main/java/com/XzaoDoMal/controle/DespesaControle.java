@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import com.XzaoDoMal.modelo.Despesa;
 import com.XzaoDoMal.modelo.Motorista;
+import com.XzaoDoMal.modelo.TipoDespesa;
 import com.XzaoDoMal.repositorio.DespesaRepositorio;
 import com.XzaoDoMal.repositorio.MotoristaRepositorio;
 import com.XzaoDoMal.servico.DespesaService;
@@ -25,6 +27,7 @@ import jakarta.transaction.Transactional;
 
 @Controller
 @RequestMapping("/despesas")
+@PreAuthorize("hasAnyRole('ADMIN', 'BASIC', 'MOTORISTA')")
 public class DespesaControle {
 
 	@Autowired
@@ -41,10 +44,10 @@ public class DespesaControle {
 	public ModelAndView inicioDespesa(Despesa despesa) {
 		ModelAndView mv = new ModelAndView("despesas/cadastro-despesa");
 		List<Motorista> motoristas = motoristaRepositorio.findAll();
-		// this.despesas = despesaRepositorio.findAll();
 
 		mv.addObject("motoristas", motoristas);
 		mv.addObject("despesa", despesa);
+		mv.addObject("tiposDespesa", TipoDespesa.values());
 		mv.addObject("despesas", this.despesas);
 		return mv;
 	}
@@ -81,7 +84,7 @@ public class DespesaControle {
 	public ModelAndView salvarDespesa(ModelAndView mv, Despesa despesa, String acao) {
 
 		despesaService.salvarDespesas(this.despesas, acao, despesa);
-		this.despesas.clear();
+		
 		mv.setViewName("redirect:/despesas/cadastro-despesas");
 		return mv;
 	}

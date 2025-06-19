@@ -1,10 +1,10 @@
-@charset "ISO-8859-1";
-
-/* Estilo personalizado */
 body {
 	background-color: #f8f9fa;
 }
-
+.log{
+	height: 100vh;
+	background: linear-gradient(to right, rgb(51, 153, 255) 50%, rgb(159, 224, 255) 70%, rgb(128, 255, 255) 90%);
+}
 .hero-section {
 	background: linear-gradient(135deg, #007bff 0%, #6c757d 100%);
 	color: #fff;
@@ -52,6 +52,9 @@ body {
 .sublinhado {
 	text-decoration: none;
 	color: red;
+}
+#sub {
+	text-decoration: none;
 }
 
 .horas {

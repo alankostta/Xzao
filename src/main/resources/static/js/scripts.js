@@ -1,5 +1,3 @@
-
-// Dados de exemplo para o gráfico
 const dadosHoras = {
 	labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
 	datasets: [{

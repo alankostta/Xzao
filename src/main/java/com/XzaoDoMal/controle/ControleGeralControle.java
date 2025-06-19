@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,6 +29,7 @@ import com.XzaoDoMal.servico.MotoristaService;
 import jakarta.transaction.Transactional;
 
 @Controller
+@PreAuthorize("hasAnyRole('ADMIN', 'BASIC', 'MOTORISTA')")
 @RequestMapping("/cadastro-controle-geral")
 public class ControleGeralControle {
 
@@ -165,7 +167,7 @@ public class ControleGeralControle {
 		Date inicioJornadaDate = Date.from(inicioJornada.atZone(ZoneId.systemDefault()).toInstant());
 		Long num = (long) 1;
 		controle.setId(num);
-		Double horaDia = controleGeralService.getHorasDiaPorId(controle.getId().intValue(), inicioJornadaDate);
+//		Double horaDia = controleGeralService.getHorasDiaPorId(controle.getId().intValue(), inicioJornadaDate);
 		Double horaGeral = controleGeralService.getHorasDiaGeral(inicioJornadaDate);
 		
 		// Cria o ModelAndView para retornar a página com os dados

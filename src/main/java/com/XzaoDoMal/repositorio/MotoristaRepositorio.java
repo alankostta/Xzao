@@ -23,4 +23,5 @@ public interface MotoristaRepositorio extends JpaRepository<Motorista, Long>{
 	List<Motorista> findByDespesa(Despesa despesa);	
 	
 	List<Motorista> findByControle(ControleGeral controle);
+
 }

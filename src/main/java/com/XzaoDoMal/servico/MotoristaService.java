@@ -20,13 +20,11 @@ public class MotoristaService {
 
 	@Transactional
 	public Motorista salvarMotorista(Motorista motorista) {
-		if (motorista == null) {
-			return null;
-		}
+		
 		motorista.setNome(motorista.getNome().toUpperCase());
     	motorista.setCarro(motorista.getCarro().toUpperCase());
-		return motoristaRepositorio.save(motorista); // Retorna o objeto salvo
-	}
+		return motoristaRepositorio.save(motorista);
+	}// Retorna o objeto salvo
 
 	public Page<Motorista> pesquisarTodosMotoristas(Pageable pageable) {
 	    return motoristaRepositorio.findAll(pageable);
